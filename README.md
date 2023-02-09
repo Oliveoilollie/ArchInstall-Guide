@@ -10,7 +10,7 @@ now if your lazy you can use the `arch-install` cmd. it makes things easier
 
 ALSO A TIP "ctrl L" clears the screen, `lsblk` shows partitions and drives
 
-package manager being a bitch???? - `pacman -Sy archlinux-keyring`
+package manager being a Female DOg???? - `pacman -Sy archlinux-keyring`
 ----------------------------------------------------------
 
 PREINSTALL
