@@ -71,7 +71,7 @@ MOUNTING partitions
 ------------------------------------------------------------------
 INSTALLING THE BASE SYSTEM
 
-1. install your shit - `pacstrap /mnt base linux linux-firmware sof-firmware base-devel grub efibootmgr nano networkmanager`
+1. install your shit - `pacstrap /mnt base linux linux-firmware sof-firmware base-devel grub efibootmgr nano networkmanager` dont forget to install the ucode for your cpu!!!!
 
 --note-- base linux and linux firmware is only what is really needed for boot, nano is our text editor there are many options but nano is easy, base-devel is for AUR, grub is the bootloader,
 
@@ -82,7 +82,7 @@ CONFIGURE THE SYSTEM
 
 --note `genfstab /mnt` shows your partitions and what they are booted too--
 
-1. write that fstab file you just saw in the note and put it in your system - `genfstab /mnt > /mnt/etc/fstab`
+1. write that fstab file you just saw in the note and put it in your system - `genfstab -U /mnt > /mnt/etc/fstab`
 
 --check it using `cat /mnt/etc/fstab`
 
