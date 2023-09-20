@@ -57,6 +57,9 @@ its gonna show up with shit thats normal
 
 ------------------------------------------------------------------
 MOUNTING partitions
+--how to setup BRTFS if you perfer that lmao
+https://www.arcolinuxd.com/installing-arch-linux-with-a-btrfs-filesystem/
+
 
 --note-- always mount root first
 
