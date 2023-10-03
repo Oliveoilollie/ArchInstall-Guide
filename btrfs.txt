@@ -1,0 +1,46 @@
+#create 3 partitions using cfdisk, a boot root and swap
+
+#make your file systems
+mkfs.fat -F32 /dev/(bootpart)
+mkswap /dev/(swap)
+mkfs.btrfs /dev/(root)
+
+#mount your partitions
+mount /dev/(root) /mnt
+mount /dev/(boot) /mnt/boot
+swapon /dev/(swap)
+
+#make btrfs subvolumes
+btrfs su cr /mnt/@ (make the root subvolume)
+btrfs su cr /mnt/@home
+btrfs su cr /mnt/@snapshots
+btrfs su cr /mnt/@var_log
+
+#umount the root partition
+umount /mnt
+
+#mount subvolumes
+mount -o noatime,compress=lzo,space_chache=v2,subvol=@ /dev/(root) /mnt
+
+mkdir -p /mnt/{boot,home,.snapshots,var_log}
+
+mount -o noatime,compress=lzo,space_chache=v2,subvol=@home /dev/(root) /mnt/home
+mount -o noatime,compress=lzo,space_chache=v2,subvol=@snapshots /dev/(root) /mnt/.snapshots
+mount -o noatime,compress=lzo,space_chache=v2,subvol=@var_log /dev/(root) /mnt/var_log
+
+#lsblk it and see your work :D
+
+#SINCE YOU DID THE BOOT PART FOR GEUB DIFF READ THIS TOO LOL
+
+#setup the grub and the btrfs module
+nano /etc/mkinitcpio.conf
+
+add this to the modules (brtfs)
+
+exit and type this (mkinitcpio -p linux)
+
+grub-install --target=x86_64-EFI --EFI-directory=/boot --bootloader-id=GRUB
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+NOW YOU CAN USE TIMESHIFT LOL
